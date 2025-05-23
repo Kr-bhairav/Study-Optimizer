@@ -10,33 +10,49 @@ const aiRoutes = require('./routes/aiRoutes');
 // Load env vars
 dotenv.config();
 
-// Debug environment variables (only in development)
-if (process.env.NODE_ENV !== 'production') {
-  console.log('Environment check:');
-  console.log('MONGODB_URI exists:', !!process.env.MONGODB_URI);
-  console.log('NODE_ENV:', process.env.NODE_ENV);
-  console.log('PORT:', process.env.PORT);
-}
+// Always log basic info for debugging
+console.log('=== SERVER STARTING ===');
+console.log('NODE_ENV:', process.env.NODE_ENV);
+console.log('PORT:', process.env.PORT);
+console.log('MONGODB_URI exists:', !!process.env.MONGODB_URI);
 
 // Connect to database
 connectDB();
 
 const app = express();
 
-// CORS middleware - Allow frontend to connect
+// CORS middleware - Allow all origins with proper headers
+console.log('Setting up CORS...');
 app.use(cors({
-  origin: [
-    'http://localhost:5173',
-    'http://localhost:3000',
-    'https://smartstudy.vercel.app',
-    'https://smart-study-azure.vercel.app',
-    'https://smartstudy-git-main.vercel.app'
-  ],
-  credentials: true
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: false
 }));
+
+// Additional CORS headers for preflight requests
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+
+  if (req.method === 'OPTIONS') {
+    res.sendStatus(200);
+  } else {
+    next();
+  }
+});
+
+console.log('CORS configured successfully');
 
 // Body parser
 app.use(express.json());
+
+// Log all requests for debugging
+app.use((req, res, next) => {
+  console.log(`${req.method} ${req.path} - ${new Date().toISOString()}`);
+  next();
+});
 
 // Health check route
 app.get('/', (req, res) => {
@@ -68,9 +84,11 @@ app.get('/debug', (req, res) => {
 });
 
 // Routes
+console.log('Setting up routes...');
 app.use('/api/users', userRoutes);
 app.use('/api/study-sessions', studySessionRoutes);
 app.use('/api/ai', aiRoutes);
+console.log('Routes configured successfully');
 
 // Error handling middleware
 app.use((err, req, res, next) => {
@@ -87,9 +105,15 @@ app.use((err, req, res, next) => {
 initScheduler();
 
 const PORT = process.env.PORT || 5000;
+
+console.log('=== STARTING SERVER ===');
+console.log('Attempting to start server on port:', PORT);
+
 app.listen(PORT, () => {
+  console.log('=== SERVER STARTED SUCCESSFULLY ===');
   console.log(`Server running on port ${PORT}`);
-  if (process.env.NODE_ENV === 'development') {
-    console.log(`Frontend should connect to: http://localhost:${PORT}`);
-  }
+  console.log('Server is ready to accept connections');
+}).on('error', (err) => {
+  console.error('=== SERVER START ERROR ===');
+  console.error('Failed to start server:', err);
 });
