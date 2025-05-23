@@ -3,7 +3,8 @@ const User = require('../models/User');
 
 // Generate JWT
 const generateToken = (id) => {
-  return jwt.sign({ id }, process.env.JWT_SECRET, {
+  const jwtSecret = process.env.JWT_SECRET || 'Abhishek@1';
+  return jwt.sign({ id }, jwtSecret, {
     expiresIn: '30d'
   });
 };
@@ -75,7 +76,7 @@ exports.loginUser = async (req, res) => {
 exports.getUserProfile = async (req, res) => {
   try {
     const user = await User.findById(req.user.id);
-    
+
     if (user) {
       res.json({
         _id: user._id,
