@@ -12,15 +12,23 @@ const generateToken = (id) => {
 // Register user
 exports.registerUser = async (req, res) => {
   try {
+    console.log('Register request received:', req.body);
     const { name, email, password } = req.body;
 
+    // Validate input
+    if (!name || !email || !password) {
+      return res.status(400).json({ message: 'Please provide name, email, and password' });
+    }
+
     // Check if user exists
+    console.log('Checking if user exists:', email);
     const userExists = await User.findOne({ email });
     if (userExists) {
       return res.status(400).json({ message: 'User already exists' });
     }
 
     // Create user
+    console.log('Creating new user...');
     const user = await User.create({
       name,
       email,
@@ -28,6 +36,7 @@ exports.registerUser = async (req, res) => {
     });
 
     if (user) {
+      console.log('User created successfully:', user._id);
       res.status(201).json({
         _id: user._id,
         name: user.name,
@@ -38,8 +47,17 @@ exports.registerUser = async (req, res) => {
       res.status(400).json({ message: 'Invalid user data' });
     }
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Server error' });
+    console.error('=== REGISTRATION ERROR ===');
+    console.error('Error message:', error.message);
+    console.error('Error stack:', error.stack);
+    console.error('Error name:', error.name);
+    console.error('Full error:', error);
+
+    res.status(500).json({
+      message: 'Server error during registration',
+      error: error.message,
+      details: error.stack
+    });
   }
 };
 
