@@ -583,7 +583,7 @@ const AIAssistant = ({ user }) => {
 
   const tabs = [
     { id: 'chat', label: 'AI Chat', icon: '💬' },
-    { id: 'planner', label: 'Study Planner', icon: '📋' },
+    { id: 'planner', label: 'Study Optimizer', icon: '📋' },
     { id: 'quiz', label: 'Quiz Generator', icon: '❓' },
     { id: 'insights', label: 'Study Insights', icon: '📊' }
   ];

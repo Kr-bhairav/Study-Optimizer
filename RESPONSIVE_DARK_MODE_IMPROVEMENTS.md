@@ -1,7 +1,7 @@
-# Smart Study Scheduler - UI Responsiveness & Dark Mode Improvements
+# Smart Study Optimizer - UI Responsiveness & Dark Mode Improvements
 
 ## 🎯 Overview
-This document outlines the comprehensive improvements made to enhance UI responsiveness and dark mode functionality in the Smart Study Scheduler application.
+This document outlines the comprehensive improvements made to enhance UI responsiveness and dark mode functionality in the Smart Study Optimizer application.
 
 ## ✅ Completed Improvements
 
@@ -145,7 +145,7 @@ npm run dev
 
 ## 🎉 Results
 
-The Smart Study Scheduler now provides:
+The Smart Study Optimizer now provides:
 - ✅ **Fully responsive design** that works on all devices
 - ✅ **Comprehensive dark mode** with proper styling
 - ✅ **Mobile-first approach** for better mobile experience

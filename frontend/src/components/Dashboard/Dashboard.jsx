@@ -287,7 +287,7 @@ const Dashboard = ({ user, onNavigate }) => {
               className="text-left p-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:shadow-md transition-all duration-200"
             >
               <div className="text-xl lg:text-2xl mb-1">📋</div>
-              <div className="font-medium text-gray-900 dark:text-gray-100 text-sm lg:text-base">Study Planner</div>
+              <div className="font-medium text-gray-900 dark:text-gray-100 text-sm lg:text-base">Study Optimizer</div>
               <div className="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Generate personalized plans</div>
             </button>
             <button

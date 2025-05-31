@@ -1,6 +1,6 @@
 # 🤖 AI Integration Setup Guide - FIXED & WORKING! ✅
 
-Your Smart Study Scheduler now supports **three AI modes** with automatic fallback:
+Your Smart Study Optimizer now supports **three AI modes** with automatic fallback:
 
 1. **Python AI Service** (✅ WORKING - Recommended for local development)
 2. **OpenAI API Integration** (✅ CONFIGURED - Best for production)

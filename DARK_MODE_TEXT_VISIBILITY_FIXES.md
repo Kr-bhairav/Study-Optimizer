@@ -1,7 +1,7 @@
 # Dark Mode Text Visibility Improvements
 
 ## 🎯 Overview
-This document outlines the comprehensive text visibility improvements made to enhance readability in dark mode across all components of the Smart Study Scheduler application.
+This document outlines the comprehensive text visibility improvements made to enhance readability in dark mode across all components of the Smart Study Optimizer application.
 
 ## ✅ Text Visibility Fixes Applied
 
@@ -121,7 +121,7 @@ This document outlines the comprehensive text visibility improvements made to en
 
 ## 🚀 **Result**
 
-The Smart Study Scheduler now provides:
+The Smart Study Optimizer now provides:
 - ✅ **Excellent text visibility** in both light and dark modes
 - ✅ **Consistent contrast ratios** across all components
 - ✅ **Improved accessibility** with better color contrast

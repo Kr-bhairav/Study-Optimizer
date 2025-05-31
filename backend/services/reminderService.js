@@ -41,7 +41,7 @@ exports.sendRevisionReminders = async () => {
           Your scheduled revision time: ${session.nextRevision.toLocaleString()}
           
           Happy studying!
-          Your Study Scheduler AI
+          Your Study Optimizer AI
         `
       };
       
